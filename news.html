@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZfinance: Finance News</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* EZfinance theme styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2a3852;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+        }
+        .navbar {
+            background-color: #1B263B;
+            padding: 10px;
+        }
+        .navbar-brand {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .navbar-brand b {
+            color: #FF6347; /* EZ finance color */
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        .news-container {
+            background-color: #1B263B;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff; /* EZfinance accent color */
+        }
+        .news-item {
+            background-color: #0D1B2A;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            color: white;
+        }
+        .news-item a {
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-decoration: bold;
+            
+        }
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+        .learn-more {
+            display: block;
+            margin-top: 10px;
+            text-align: right;
+            font-weight: bold;
+            color: #FF6347;
+        }
+        .EZ{
+              color: #1b98e0;
+           font-family:monospace;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="index.html">
+            <b style="color: #1b98e0; font-family: monospace;">EZ</b><i>f</i>inance
+        </a>
+    </nav>
+
+    <div class="container">
+        <div class="news-container">
+            <h1>Today's Finance News</h1>
+            <div id="current-date" style="text-align: center; margin-bottom: 15px; font-weight: bolder; color: #adb4f3;"></div>
+
+            <div id="news-container"></div>
+        </div>
+    </div><br>
+
+    <footer>
+        <p>&copy; 2025 EZfinance. All Rights Reserved. | <a href="feedback.html">Give Feedback</a></p>
+    </footer>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="news.js"></script>
+    <script src="toast.js"></script>
+    <script>
+        // Display Current Date
+        function displayCurrentDate() {
+            const currentDate = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = currentDate.toLocaleDateString('en-US', options);
+    
+            document.getElementById('current-date').textContent = `Today's Date: ${formattedDate}`;
+        }
+    
+        // Call the function when the page loads
+        window.onload = function () {
+            displayCurrentDate();
+        };
+    </script>
+    
+
+</body>
+</html>

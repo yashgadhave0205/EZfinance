@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EZfinance AI Chatbot (Test)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        #chatbox {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            height: 400px;
+            overflow-y: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .message {
+            margin-bottom: 15px;
+        }
+        .user {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .bot {
+            color: #333;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+        }
+        button {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>EZfinance AI Chatbot - Test</h2>
+
+<div id="chatbox"></div>
+
+<input type="text" id="userInput" placeholder="Type your message...">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+    async function sendMessage() {
+        const userInput = document.getElementById('userInput');
+        const chatbox = document.getElementById('chatbox');
+        const message = userInput.value.trim();
+
+        if (message === "") return;
+
+        // Display user message
+        chatbox.innerHTML += `<div class="message user">You: ${message}</div>`;
+        userInput.value = "";
+        chatbox.scrollTop = chatbox.scrollHeight;
+
+        // Send to Flask backend
+       const response = await fetch("/chat", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ message: message })
+});
+
+
+        const data = await response.json();
+        const botReply = data.response;
+        const source = data.source === "ezfinance" ? " (EZfinance)" : " (Gemini)";
+
+        // Display bot reply
+        chatbox.innerHTML += `<div class="message bot">Bot${source}: ${botReply}</div>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

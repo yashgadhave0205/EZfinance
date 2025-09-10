@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZfinance: Currency Converter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Include your EZfinance theme styles here */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .calculator-container {
+            background-color: #1B263B;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .calculator-input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #415A77;
+            background-color: #0D1B2A;
+            color: white;
+        }
+
+        .calculator-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #415A77;
+            color: white;
+            cursor: pointer;
+        }
+
+        .calculator-result {
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+        }
+        .loading { 
+            display: none; text-align: center; margin-top: 10px; color: #FFD700; 
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="index.html">
+            <b class="EZ">EZ</b><i>f</i>inance
+        </a>
+        <!-- Include other navbar items here -->
+    </nav>
+
+    <div class="container">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h2><b class="EZ">EZ</b><i>f</i>inance Currency Converter</h2>
+                <p>Convert currencies quickly and easily!</p>
+            </div>
+            <form id="currency-converter-form" class="calculator-form">
+                <input type="number" id="amount" class="calculator-input" placeholder="Amount" required>
+                <select id="from-currency" class="calculator-input" required>
+                    <option value="">From Currency</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                </select>
+                <select id="to-currency" class="calculator-input" required>
+                    <option value="">To Currency</option>
+                    <option value="USD">USD - US Dollar</option>
+                    <option value="EUR">EUR - Euro</option>
+                    <option value="INR">INR - Indian Rupee</option>
+                    <option value="GBP">GBP - British Pound</option>
+                    <option value="JPY">JPY - Japanese Yen</option>
+                </select>
+                <button type="submit" class="calculator-button">Convert</button>
+            </form>
+            <div class="loading" id="loading">Fetching live rates...</div>
+            <div id="currency-converter-result" class="calculator-result"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 EZfinance. All Rights Reserved. | <a href="feedback.html">Give Feedback</a></p>
+    </footer>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- <script>
+        document.getElementById('currency-converter-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const amount = parseFloat(document.getElementById('amount').value);
+            const fromCurrency = document.getElementById('from-currency').value;
+            const toCurrency = document.getElementById('to-currency').value;
+
+            if (isNaN(amount) || !fromCurrency || !toCurrency) {
+                alert('Please fill in all fields with valid inputs.');
+                return;
+            }
+
+            try {
+                // Mock API call (replace with real API for production use)
+                const exchangeRates = {
+                    USD: { INR: 82.5, EUR: 0.85, GBP: 0.75, JPY: 110 },
+                    INR: { USD: 0.012, EUR: 0.010, GBP: 0.009, JPY: 1.33 },
+                    EUR: { USD: 1.18, INR: 100, GBP: 0.88, JPY: 129 },
+                    GBP: { USD: 1.34, INR: 112.5, EUR: 1.14, JPY: 146 },
+                    JPY: { USD: 0.009, INR: 0.75, EUR: 0.0077, GBP: 0.0068 }
+                };
+
+                const rate = exchangeRates[fromCurrency][toCurrency];
+                if (!rate) {
+                    throw new Error('Exchange rate not available.');
+                }
+
+                const convertedAmount = amount * rate;
+                document.getElementById('currency-converter-result').innerHTML = `
+                    <p><strong>Converted Amount:</strong> ${toCurrency} ${convertedAmount.toFixed(2)}</p>
+                `;
+            } catch (error) {
+                document.getElementById('currency-converter-result').innerHTML = `
+                    <p>Error: ${error.message}</p>
+                `;
+            }
+        });
+    </script> -->
+    <script src="toast.js"></script>
+    <script src="converter.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZfinance: EMI Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Include your EZfinance theme styles here */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .calculator-container {
+            background-color: #1B263B;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .calculator-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .calculator-input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #415A77;
+            background-color: #0D1B2A;
+            color: white;
+        }
+
+        .calculator-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #415A77;
+            color: white;
+            cursor: pointer;
+        }
+
+        .calculator-result {
+            margin-top: 20px;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="index.html">
+            <b class="EZ">EZ</b><i>f</i>inance
+        </a>
+        <!-- Include other navbar items here -->
+    </nav>
+
+    <div class="container">
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h2><b class="EZ">EZ</b><i>f</i>inance EMI Calculator</h2>
+                <p>Calculate your Equated Monthly Installment (EMI) easily!</p>
+            </div>
+            <form id="emi-calculator-form" class="calculator-form">
+                <input type="number" id="loan-amount" class="calculator-input" placeholder="Loan Amount (₹)" required>
+                <input type="number" id="annual-rate" class="calculator-input" placeholder="Annual Interest Rate (%)" required>
+                <input type="number" id="loan-tenure" class="calculator-input" placeholder="Loan Tenure (Months)" required>
+                <button type="submit" class="calculator-button">Calculate</button>
+            </form>
+            <div id="emi-calculator-result" class="calculator-result"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 EZfinance. All Rights Reserved. | <a href="feedback.html">Give Feedback</a></p>
+    </footer>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('emi-calculator-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const loanAmount = parseFloat(document.getElementById('loan-amount').value);
+            const annualRate = parseFloat(document.getElementById('annual-rate').value);
+            const loanTenure = parseFloat(document.getElementById('loan-tenure').value);
+
+            if (isNaN(loanAmount) || isNaN(annualRate) || isNaN(loanTenure)) {
+                alert('Please enter valid numbers for all fields.');
+                return;
+            }
+
+            // Convert annual interest rate to monthly rate (in decimal)
+            const monthlyRate = annualRate / 12 / 100;
+
+            // EMI formula: EMI = [P * r * (1 + r)^n] / [(1 + r)^n - 1]
+            const numerator = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, loanTenure);
+            const denominator = Math.pow(1 + monthlyRate, loanTenure) - 1;
+            const emi = numerator / denominator;
+
+            document.getElementById('emi-calculator-result').innerHTML = `
+                <p><strong>Monthly EMI:</strong> ₹${emi.toFixed(2)}</p>
+                <p><strong>Total Payment:</strong> ₹${(emi * loanTenure).toFixed(2)}</p>
+                <p><strong>Total Interest:</strong> ₹${((emi * loanTenure) - loanAmount).toFixed(2)}</p>
+            `;
+        });
+    </script>
+    <script src="toast.js"></script>
+
+</body>
+</html>

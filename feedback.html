@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZfinance: Feedback Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .feedback-container {
+            background-color: #1B263B;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .feedback-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .feedback-input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #415A77;
+            background-color: #0D1B2A;
+            color: white;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .feedback-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #415A77;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+        }
+        .stars {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        .star {
+            font-size: 30px;
+            color: #ccc;  /* Default grey */
+            cursor: pointer;
+        }
+        .star.active {
+            color: gold;  /* Active stars turn gold */
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="index.html">
+            <b class="EZ">EZ</b><i>f</i>inance
+        </a>
+    </nav>
+    <div class="container">
+        <div class="feedback-container">
+            <div class="feedback-header">
+                <h2><b class="EZ">EZ</b><i>f</i>inance Feedback</h2>
+                <p>We value your feedback! Please share your experience with us.</p>
+            </div>
+            <form action="http://localhost/php/send_feedback.php" method="POST">
+                <input type="text" name="name" class="feedback-input" placeholder="Your Name" required>
+                <input type="email" name="email" class="feedback-input" placeholder="Your Email" required>
+                <textarea name="message" class="feedback-input" rows="4" placeholder="Your Feedback" required></textarea>
+                
+                <label for="rating">Rate Us:</label>
+                <div class="stars">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+                <input type="hidden" name="rating" id="rating-value" value="" required>
+
+                <button type="submit" class="feedback-button">Submit Feedback</button>
+            </form>
+        </div><br><br>
+    </div><br><br>
+    <footer>
+        &copy; 2025 EZfinance. All Rights Reserved.
+    </footer>
+
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating-value');
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                ratingInput.value = '★'.repeat(value); // Store rating value (e.g., ★★★★)
+
+                // Highlight stars
+                stars.forEach(s => {
+                    s.classList.remove('active');
+                    if (s.getAttribute('data-value') <= value) {
+                        s.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="toast.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZfinance: Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Adding image as background */
+        html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+      background: url('PHP/Images/ai-financial-advisor_0.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+        header.jumbotron {
+            background: url('file:///C:/wamp/www/php/Images/ai-financial-advisor_0.jpg') no-repeat center center;
+            background-size: cover;
+        }
+       .myimg{
+          width: 100%;
+          height: 550;
+          margin: 0%;
+       }
+       #bgimg{
+        width: 100%;
+        height: 550;
+        margin: 0%;
+       }
+       .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.695); /* Semi-transparent black background */
+            padding: 20px; /* Add some padding around the text */
+            border-radius: 10px; /* Optional: Add rounded corners */
+        }
+
+        .overlay-text h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .overlay-text p {
+            font-size: 1.5em;
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="index.html"><b class="EZ">EZ</b><i>f</i>inance</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link nbtn" href="index.html"><b><u>Home</u></b></a></li>
+                <!-- <li class="nav-item"><a class="nav-link nbtn" href="features.html"><b>Our Features</b></a></li> -->
+                <li class="nav-item"><a class="nav-link nbtn" href="about.html"><b>About us</b></a></li>
+                <!-- <li class="nav-item"><a class="nav-link nbtn" href="services.html"><b>Services</b></a></li> -->
+                <!-- <li class="nav-item"><a class="nav-link nbtn" href="blog.html"><b>Blog</b></a></li>
+                <li class="nav-item"><a class="nav-link nbtn" href="courses.html"><b>Learn Finance</b></a></li> -->
+                <li class="nav-item"><a class="nav-link nbtn" href="ai-chatbot.php" id="aiAssistantLink"><b>AI Assistant</b></a></li>
+            </ul>
+        </div>
+    </nav>
+ 
+    <div class="myimg">
+     <!-- <img src="PHP/Images/ai-financial-advisor_0.jpg" width="100%" height="550" id="bgimg"> -->
+    
+  
+     <header class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <div class="overlay-text">
+            <h1 class="display-4">Welcome to <b class="EZ">EZ</b><i>f</i>inance</h1><hr color="white">
+            <p class="lead">Your trusted personal financial advisor</p><hr color="white">
+            <center><a href="http://localhost/PHP/form.php?#"><button class="button">
+                Get Started
+                <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
+                  <path
+                    clip-rule="evenodd"
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                    fill-rule="evenodd"></path>
+                </svg>
+              </button></a></center>
+              </div>
+         </div>
+    </div>
+     </header>
+
+     <footer>
+        <p>&copy; 2025 EZfinance. All Rights Reserved. | <a href="feedback.html">Give Feedback</a></p>
+    </footer>
+    
+
+    <!-- Include Bootstrap JS and custom JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="chatbot.js"></script>
+    <!-- <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('logout') === 'success') {
+                alert('Logout Successful');
+            }
+        }
+        </script> -->
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+    <i class="fas fa-exclamation-circle"></i> Login first to access all features.
+</div>
+
+<!-- Toast Notification Styling -->
+<style>
+    .toast {
+        visibility: hidden;
+        min-width: 280px;
+        background-color: #dc3545;
+        color: #fff;
+        text-align: center;
+        border-radius: 8px;
+        padding: 12px 16px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 9999;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+    }
+
+    .toast.show {
+        visibility: visible;
+        animation: fadein 0.5s, fadeout 0.5s 3s;
+    }
+
+    .toast i {
+        font-size: 18px;
+    }
+
+    @keyframes fadein {
+        from { opacity: 0; bottom: 20px; }
+        to { opacity: 1; bottom: 30px; }
+    }
+
+    @keyframes fadeout {
+        from { opacity: 1; bottom: 30px; }
+        to { opacity: 0; bottom: 20px; }
+    }
+</style>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('logout') === 'success') {
+            showToast("Logout Successful", "#dc3545"); // Red color for logout
+        }
+
+        function showToast(message, bgColor) {
+            const toast = document.createElement("div");
+            toast.className = "toast show";
+            toast.textContent = message; // Only text (No icon)
+
+            // Toast styling
+            Object.assign(toast.style, {
+                visibility: 'visible',
+                minWidth: '280px',
+                backgroundColor: bgColor,
+                color: '#fff',
+                textAlign: 'center',
+                borderRadius: '8px',
+                padding: '12px 16px',
+                position: 'fixed',
+                bottom: '30px',
+                right: '30px',
+                zIndex: '9999',
+                fontWeight: '500',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
+            });
+
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 4000); // Toast disappears after 4 seconds
+        }
+    });
+
+       function showToast() {
+        const toast = document.getElementById("toast");
+        toast.className = "toast show";
+        setTimeout(() => {
+            toast.className = toast.className.replace("show", "");
+        }, 4000); // 4 seconds delay
+    }
+</script>
+<script src="authCheck.js"></script>
+
+
+
+
+<style>
+    .toast-notification {
+        position:fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: red;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out;
+    }
+    </style>
+
+
+</body>
+</html>
